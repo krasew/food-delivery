@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
-//import com.bebwhepan.app.Models.Ingredient;
 import com.bebwhepan.app.Models.Ingredient.Type;
 
 @Component
