@@ -16,14 +16,14 @@ import com.bebwhepan.app.Models.Ingredient.Type;
 import com.bebwhepan.app.Models.Taco;
 import com.bebwhepan.app.Models.TacoOrder;
 
-@Slf4j
+@Slf4j // its Beb
 @Controller
 @RequestMapping("/design")
 @SessionAttributes("tacoOrder")
-
 public class DesignTacoController {
     @ModelAttribute
     public void addIngredientsToModel(Model model) {
+        System.out.println(model);
         List<Ingredient> ingredients = Arrays.asList(
                 new Ingredient("FLTO", "Flour Tortilla", Type.WRAP),
                 new Ingredient("COTO", "Corn Tortilla", Type.WRAP),
@@ -37,6 +37,7 @@ public class DesignTacoController {
                 new Ingredient("SRCR", "Sour Cream", Type.SAUCE));
 
         Type[] types = Ingredient.Type.values();
+
         for (Type type : types) {
             model.addAttribute(type.toString().toLowerCase(),
                     filterByType(ingredients, type));
