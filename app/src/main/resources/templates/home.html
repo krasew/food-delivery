@@ -1,12 +1,23 @@
 <!DOCTYPE html>
-    <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <title>Beb Whepan Food Delivery</title>
-    </head>
-    
-    <body>
-        <h1>Welcome to our delivery!</h1>
-        <img th:src="@{https://i.ibb.co/vXzZmwY/0r-AYNLI6cbs.jpg}"/>
-    </body>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Beb Whepan Food Delivery</title>
+    <style>
+        body {
+            background-image: url('https://i.ibb.co/KyYzMqH/129165-kofe-trava-blyudo-list-chajnaya-chashka-3840x2160.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: top center;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <font size="10" color="white"><center><h1>Welcome to our delivery</h1></center></font></size><br />
+    <font size="5" color = "white"><h1>Choose your order:</h1></font><br />
+    <font size="6.25" color = "white"><a th:href="@{/designSushi}" style="color: white" id="another">The most delicious sushi!</a></font><br />
+    <font size="6.25" color = "white"><a th:href="@{/designTaco}" style="color: white" id="another">The most delicious taco!</a></font><br />
+    <p align="right"><font size="7" color = "white"><a th:href="@{/about}" style="color: white" id="another">About us</a></font></p>
+</body>
 </html>

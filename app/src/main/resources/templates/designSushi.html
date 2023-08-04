@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Sushi Cloud</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+    <style>
+        body {
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <center><h1>Design your sushi!</h1>
+    <img th:src="@{https://i.ibb.co/Mgcwz3N/sss.png}" /></center>
+    <form method="POST" th:object="${sushi}">
+        <div class="grid">
+            <div class="ingredient-group" id="phill">
+                <h3>Choose Philadelphia:</h3>
+                <div th:each="ingredient : ${phil}">
+                    <input th:field="*{ingredientsSushi}" type="checkbox" th:value="${ingredient.id}" />
+                    <span th:text="${ingredient.name}">INGREDIENT</span><br />
+                </div>
+            </div>
+            <div class="ingredient-group" id="califf">
+                <h3>Choose California:</h3>
+                <div th:each="ingredient : ${calif}">
+                    <input th:field="*{ingredientsSushi}" type="checkbox" th:value="${ingredient.id}" />
+                    <span th:text="${ingredient.name}">INGREDIENT</span><br />
+                </div>
+            </div>
+            <div class="ingredient-group" id="kioo">
+                <h3>Choose Kioto:</h3>
+                <div th:each="ingredient : ${kio}">
+                    <input th:field="*{ingredientsSushi}" type="checkbox" th:value="${ingredient.id}" />
+                    <span th:text="${ingredient.name}">INGREDIENT</span><br />
+                </div>
+            </div>
+            <div class="ingredient-group" id="nikk">
+                <h3>Choose Nikko:</h3>
+                <div th:each="ingredient : ${nik}">
+                    <input th:field="*{ingredientsSushi}" type="checkbox" th:value="${ingredient.id}" />
+                    <span th:text="${ingredient.name}">INGREDIENT</span><br />
+                </div>
+            </div>
+            <div class="ingredient-group" id="krispii">
+                <h3>Choose Krispi:</h3>
+                <div th:each="ingredient : ${krispi}">
+                    <input th:field="*{ingredientsSushi}" type="checkbox" th:value="${ingredient.id}" />
+                    <span th:text="${ingredient.name}">INGREDIENT</span><br />
+                </div>
+            </div>
+            <div class="ingredient-group" id="ovaraa">
+                <h3>Choose Ovara:</h3>
+                <div th:each="ingredient : ${ovara}">
+                    <input th:field="*{ingredientsSushi}" type="checkbox" th:value="${ingredient.id}" />
+                    <span th:text="${ingredient.name}">INGREDIENT</span><br />
+                </div>
+            </div>
+        </div>
+        <div>
+            <h3>How would you like to introduce yourself?</h3>
+            <input type="text" th:field="*{name}" />
+            <br />
+            <button>Submit Your Sushi!</button>
+        </div>
+    </form>
+</body>
+
+</html>

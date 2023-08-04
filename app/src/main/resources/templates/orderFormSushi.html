@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Sushi Cloud</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+    <style>
+        body {
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <form method="POST" th:action="@{/ordersSushi}" th:object="${sushiOrder}">
+        <h1>Order your sushi creations!</h1>
+        <img th:src="@{https://i.ibb.co/Mgcwz3N/sss.png}" />
+        <h3>Your sushi in this order:</h3>
+        <a th:href="@{/designSushi}" id="another">Design another sushi</a><br />
+        <ul>
+            <li th:each="sushi : ${sushiOrder.sushi_lots}">
+                <span th:text="${sushi.name}">sushi name</span>
+            </li>
+        </ul>
+        <h3>Deliver my lovely sushi to...</h3>
+        <label for="deliveryName">Name: </label>
+        <input type="text" th:field="*{deliveryName}" />
+        <br />
+        <label for="deliveryStreet">Street address: </label>
+        <input type="text" th:field="*{deliveryStreet}" />
+        <br />
+        <label for="deliveryCity">City: </label>
+        <input type="text" th:field="*{deliveryCity}" />
+        <br />
+        <label for="deliveryState">State: </label>
+        <input type="text" th:field="*{deliveryState}" />
+        <br />
+        <label for="deliveryZip">Zip code: </label>
+        <input type="text" th:field="*{deliveryZip}" />
+        <br />
+        <h3>Here's how I'll pay...</h3>
+        <label for="ccNumber">Credit Card #: </label>
+        <input type="text" th:field="*{ccNumber}" />
+        <br />
+        <label for="ccExpiration">Expiration: </label>
+        <input type="text" th:field="*{ccExpiration}" />
+        <br />
+        <label for="ccCVV">CVV: </label>
+        <input type="text" th:field="*{ccCVV}" />
+        <br />
+        <input type="submit" value="Submit Order" />
+    </form>
+</body>
+
+</html>
