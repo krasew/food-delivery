@@ -1,12 +1,11 @@
-package com.bebwhepan.app.Models;
+package com.bebwhepan.app.Models.Sushi;
 
 import java.util.List;
 import java.util.ArrayList;
 import lombok.Data;
 
 @Data
-
-public class TacoOrder {
+public class SushiOrder {
     private String deliveryName;
     private String deliveryStreet;
     private String deliveryCity;
@@ -15,9 +14,9 @@ public class TacoOrder {
     private String ccNumber;
     private String ccExpiration;
     private String ccCVV;
-    private List<Taco> tacos = new ArrayList<>();
+    private List<Sushi> sushi_lots = new ArrayList<>();
 
-    public void addTaco(Taco taco) {
-        tacos.add(taco);
+    public void addSushi(Sushi sushi) {
+        sushi_lots.add(sushi);    
     }
 }

@@ -4,11 +4,17 @@
 <head>
     <title>Taco Cloud</title>
     <link rel="stylesheet" th:href="@{/styles.css}" />
+    <style>
+        body {
+            background-color: black;
+            color: white;
+        }
+    </style>
 </head>
 
 <body>
-    <h1>Design your taco!</h1>
-    <img th:src="@{https://i.ibb.co/QppkcHG/Taco-PNG-Image.png}" />
+    <center><h1>Design your taco!</h1>
+    <img th:src="@{https://i.ibb.co/QppkcHG/Taco-PNG-Image.png}" /></center>
     <form method="POST" th:object="${taco}">
         <div class="grid">
             <div class="ingredient-group" id="wraps">

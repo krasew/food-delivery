@@ -1,9 +1,9 @@
-package com.bebwhepan.app.Models;
+package com.bebwhepan.app.Models.Taco;
 
 import lombok.Data;
 
 @Data
-public class Ingredient {
+public class IngredientTaco {
     private final String id;
     private final String name;
     private final Type type;
