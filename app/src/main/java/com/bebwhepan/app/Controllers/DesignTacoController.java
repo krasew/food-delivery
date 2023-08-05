@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors; //for 2.3
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +15,9 @@ import lombok.extern.slf4j.Slf4j;
 
 import com.bebwhepan.app.Models.Taco.Taco;
 import com.bebwhepan.app.Models.Taco.TacoOrder;
+
+import jakarta.validation.Valid; //for 2.3.2
+
 import com.bebwhepan.app.Models.Taco.IngredientTaco;
 import com.bebwhepan.app.Models.Taco.IngredientTaco.Type;
 
@@ -61,12 +65,16 @@ public class DesignTacoController {
     }
 
     @PostMapping
-    public String processTaco(Taco taco,
-            @ModelAttribute TacoOrder tacoOrder) {
-        tacoOrder.addTaco(taco);
-        log.info("Processing taco: {}", taco);
-        return "redirect:/ordersTaco/current";
-    }
+    public String processTaco(@Valid Taco taco, Errors errors,
+        @ModelAttribute TacoOrder tacoOrder) {
+            if (errors.hasErrors()) {
+                return "design";
+                }
+
+            tacoOrder.addTaco(taco);
+            log.info("Processing taco: {}", taco);
+            return "redirect:/ordersTaco/current";
+        }
 
     private Iterable<IngredientTaco> filterByType(List<IngredientTaco> ingredients, Type type) {
         return ingredients
