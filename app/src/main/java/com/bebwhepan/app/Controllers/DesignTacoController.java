@@ -65,7 +65,7 @@ public class DesignTacoController {
             @ModelAttribute TacoOrder tacoOrder) {
         tacoOrder.addTaco(taco);
         log.info("Processing taco: {}", taco);
-        return "redirect:/ordersTaco/current";
+        return "redirect:/orders/current";
     }
 
     private Iterable<IngredientTaco> filterByType(List<IngredientTaco> ingredients, Type type) {
