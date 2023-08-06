@@ -2,7 +2,6 @@ package com.bebwhepan.app.Controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +15,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
-@Validated
 @RequestMapping("/ordersTaco")
 @SessionAttributes("tacoOrder")
 
@@ -29,7 +27,7 @@ public class OrderTacoController {
     public String processOrder(@Valid TacoOrder order, Errors errors,
         SessionStatus sessionStatus) {
             if (errors.hasErrors()) {
-                return "orderForm";
+                return "orderFormTaco";
                 }
 
             log.info("Order submitted: {}", order);
