@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +15,9 @@ import lombok.extern.slf4j.Slf4j;
 
 import com.bebwhepan.app.Models.Sushi.Sushi;
 import com.bebwhepan.app.Models.Sushi.SushiOrder;
+
+import jakarta.validation.Valid;
+
 import com.bebwhepan.app.Models.Sushi.IngredientSushi;
 import com.bebwhepan.app.Models.Sushi.IngredientSushi.SushiType;
 
@@ -62,10 +66,15 @@ public class DesignSushiController {
     }
 
     @PostMapping
-    public String processTaco(Sushi sushi, @ModelAttribute SushiOrder sushiOrder) {
-        sushiOrder.addSushi(sushi);
-        log.info("Processing sushi: {}", sushi);
-        return "redirect:/ordersSushi/current";
+    public String processTaco(@Valid Sushi sushi, Errors errors, 
+        @ModelAttribute SushiOrder sushiOrder) {
+            if (errors.hasErrors()) {
+                return "design";
+                }
+
+            sushiOrder.addSushi(sushi);
+            log.info("Processing sushi: {}", sushi);
+            return "redirect:/ordersSushi/current";
     }
 
     private Iterable<IngredientSushi> filterByType(List<IngredientSushi> ingredientsSushi, SushiType typesus) {
