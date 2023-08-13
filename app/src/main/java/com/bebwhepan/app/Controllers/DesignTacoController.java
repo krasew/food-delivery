@@ -1,8 +1,10 @@
 package com.bebwhepan.app.Controllers;
 
-import java.util.Arrays;
+//import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors; //for 2.3
@@ -18,6 +20,7 @@ import com.bebwhepan.app.Models.Taco.TacoOrder;
 
 import jakarta.validation.Valid; //for 2.3.2
 
+import com.bebwhepan.app.Data.IngredientRepository;
 import com.bebwhepan.app.Models.Taco.IngredientTaco;
 import com.bebwhepan.app.Models.Taco.IngredientTaco.Type;
 
@@ -26,26 +29,34 @@ import com.bebwhepan.app.Models.Taco.IngredientTaco.Type;
 @RequestMapping("/designTaco") //changing
 @SessionAttributes("tacoOrder")
 public class DesignTacoController {
+
+    private final IngredientRepository ingredientRepo;
+    
+    @Autowired
+    public DesignTacoController(IngredientRepository ingredientRepo) {
+        this.ingredientRepo = ingredientRepo;
+    }
+
     @ModelAttribute
     public void addIngredientsToModel(Model model) {
-        System.out.println(model);
-        List<IngredientTaco> ingredients = Arrays.asList(
-                new IngredientTaco("FLTO", "Flour Tortilla", Type.WRAP),
-                new IngredientTaco("COTO", "Corn Tortilla", Type.WRAP),
-                new IngredientTaco("GRBF", "Ground Beef", Type.PROTEIN),
-                new IngredientTaco("CARN", "Carnitas", Type.PROTEIN),
-                new IngredientTaco("TMTO", "Diced Tomatoes", Type.VEGGIES),
-                new IngredientTaco("LETC", "Lettuce", Type.VEGGIES),
-                new IngredientTaco("CHED", "Cheddar", Type.CHEESE),
-                new IngredientTaco("JACK", "Monterrey Jack", Type.CHEESE),
-                new IngredientTaco("SLSA", "Salsa", Type.SAUCE),
-                new IngredientTaco("SRCR", "Sour Cream", Type.SAUCE));
+        Iterable<IngredientTaco> ingredients = ingredientRepo.findAll();
+        // List<IngredientTaco> ingredients = Arrays.asList(
+        //         new IngredientTaco("FLTO", "Flour Tortilla", Type.WRAP),
+        //         new IngredientTaco("COTO", "Corn Tortilla", Type.WRAP),
+        //         new IngredientTaco("GRBF", "Ground Beef", Type.PROTEIN),
+        //         new IngredientTaco("CARN", "Carnitas", Type.PROTEIN),
+        //         new IngredientTaco("TMTO", "Diced Tomatoes", Type.VEGGIES),
+        //         new IngredientTaco("LETC", "Lettuce", Type.VEGGIES),
+        //         new IngredientTaco("CHED", "Cheddar", Type.CHEESE),
+        //         new IngredientTaco("JACK", "Monterrey Jack", Type.CHEESE),
+        //         new IngredientTaco("SLSA", "Salsa", Type.SAUCE),
+        //         new IngredientTaco("SRCR", "Sour Cream", Type.SAUCE));
 
         Type[] types = IngredientTaco.Type.values();
 
         for (Type type : types) {
             model.addAttribute(type.toString().toLowerCase(),
-                    filterByType(ingredients, type));
+                    filterByType((List<IngredientTaco>) ingredients, type)); //changes here
         }
     }
 
