@@ -4,7 +4,7 @@ import java.sql.Types;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
+//import java.util.Optional;
 import org.springframework.asm.Type;
 import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.jdbc.core.PreparedStatementCreator;
@@ -12,7 +12,7 @@ import org.springframework.jdbc.core.PreparedStatementCreatorFactory;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import com.bebwhepan.app.Models.Taco.IngredientRefTaco;
+//import com.bebwhepan.app.Models.Taco.IngredientRefTaco;
 import com.bebwhepan.app.Models.Taco.IngredientTaco;
 import com.bebwhepan.app.Models.Taco.Taco;
 import com.bebwhepan.app.Models.Taco.TacoOrder;
@@ -91,6 +91,7 @@ public class JdbcOrderRepository implements OrderRepository {
 
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
         jdbcOperations.update(psc, keyHolder);
+
         long tacoId = keyHolder.getKey().longValue();
         taco.setId(tacoId);
 
@@ -100,13 +101,13 @@ public class JdbcOrderRepository implements OrderRepository {
     }
 
     private void saveIngredientRefs(
-        long tacoId, List<IngredientRefTaco> ingredientRefs) {
+        long tacoId, List<IngredientTaco> list) {
             int key = 0;
-            for (IngredientRefTaco ingredientRef : ingredientRefs) {
+            for (IngredientTaco ingredientRef : list) {
                 jdbcOperations.update(
                     "insert into Ingredient_Ref (ingredient, taco, taco_key) "
                     + "values (?, ?, ?)",
                     ingredientRef.getIngredient(), tacoId, key++);
             }
         }
-}
+    }

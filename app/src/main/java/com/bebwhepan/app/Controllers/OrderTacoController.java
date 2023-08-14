@@ -9,16 +9,21 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.bebwhepan.app.Models.Taco.TacoOrder;
+import com.bebwhepan.app.Data.OrderRepository;
 
 import jakarta.validation.Valid;
-import lombok.extern.slf4j.Slf4j;
+//import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
+//@Slf4j
 @Controller
 @RequestMapping("/ordersTaco")
 @SessionAttributes("tacoOrder")
 
 public class OrderTacoController {
+    private OrderRepository orderRepo;
+    public OrderTacoController(OrderRepository orderRepo) {
+        this.orderRepo = orderRepo;
+    }
     @GetMapping("/current")
     public String orderFormT() {
         return "orderFormTaco";
@@ -30,7 +35,8 @@ public class OrderTacoController {
                 return "orderFormTaco";
                 }
 
-            log.info("Order submitted: {}", order);
+            //log.info("Order submitted: {}", order);
+            orderRepo.save(order);
             sessionStatus.setComplete();
             return "redirect:/";
         }
