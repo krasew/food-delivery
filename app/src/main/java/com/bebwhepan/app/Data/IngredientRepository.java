@@ -4,10 +4,11 @@ import java.util.Optional;
 import com.bebwhepan.app.Models.Taco.IngredientTaco;
 
 public interface IngredientRepository {
- Iterable<IngredientTaco> findAll();
+    
+    Iterable<IngredientTaco> findAll();
 
- Optional<IngredientTaco> findById(String id);
+    Optional<IngredientTaco> findById(String id);
 
- IngredientTaco save(IngredientTaco ingredient);
+    IngredientTaco save(IngredientTaco ingredient);
 
 }
