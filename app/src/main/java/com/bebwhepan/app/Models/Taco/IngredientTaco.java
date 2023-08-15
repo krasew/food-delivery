@@ -11,8 +11,4 @@ public class IngredientTaco {
     public enum Type {
         WRAP, PROTEIN, VEGGIES, CHEESE, SAUCE
     }
-
-    public Object getIngredient() {
-        return null;
-    }
 }
