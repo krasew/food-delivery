@@ -1,14 +1,19 @@
 package com.bebwhepan.app.Data;
 
-import java.util.Optional;
+// import java.util.Optional;
 import com.bebwhepan.app.Models.Taco.IngredientTaco;
+//import org.springframework.data.repository.CrudRepository;
 
-public interface IngredientRepository{
+// public interface IngredientRepository extends Repository<IngredientTaco, String>{
     
-    Iterable<IngredientTaco> findAll();
+//     Iterable<IngredientTaco> findAll();
 
-    Optional<IngredientTaco> findById(String id);
+//     Optional<IngredientTaco> findById(String id);
 
-    IngredientTaco save(IngredientTaco ingredient);
+//     IngredientTaco save(IngredientTaco ingredient);
+
+// }
+
+public interface IngredientRepository extends CrudRepository<IngredientTaco, String> {
 
 }
