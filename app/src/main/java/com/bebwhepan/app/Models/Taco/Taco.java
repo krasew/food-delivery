@@ -8,8 +8,11 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
+@Table
 public class Taco {
+    @Id
     private Long id;
+    
     private Date createdAt = new Date();
 
     @NotNull
