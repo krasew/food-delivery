@@ -2,7 +2,6 @@ package com.bebwhepan.app.Models.Taco;
 
 //import java.util.HashMap;
 //import java.util.Map;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
@@ -13,8 +12,7 @@ import com.bebwhepan.app.Data.IngredientRepository;
 public class IngredientByIdConverterTaco implements Converter<String, IngredientTaco> {
         private IngredientRepository ingredientRepo;
 
-        @Autowired
-        public void IngredientByIdConverter(IngredientRepository ingredientRepo) {
+        public IngredientByIdConverterTaco(IngredientRepository ingredientRepo) {
                 this.ingredientRepo = ingredientRepo;
         }
 

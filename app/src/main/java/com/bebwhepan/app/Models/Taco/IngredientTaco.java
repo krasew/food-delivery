@@ -13,7 +13,6 @@ import lombok.NoArgsConstructor;
 @Table
 @AllArgsConstructor
 @NoArgsConstructor(access=AccessLevel.PRIVATE, force=true)
-
 public class IngredientTaco implements Persistable<String>{
     @Id
     private final String id;
